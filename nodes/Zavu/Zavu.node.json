@@ -1,0 +1,10 @@
+{
+	"node": "n8n-nodes-base.zavu",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Communication", "Marketing"],
+	"resources": {
+		"credentialDocumentation": [{ "url": "https://docs.zavu.dev/quickstart" }],
+		"primaryDocumentation": [{ "url": "https://docs.zavu.dev/api-reference" }]
+	}
+}

@@ -1,0 +1,42 @@
+name: CI
+
+# Runs in the PUBLIC repo zavudev/n8n-nodes-zavu, mirrored there from the Zavu
+# monorepo. Its job is to keep the mirror honest: the monorepo is where this
+# package is developed, so without this a broken sync would sit unnoticed until
+# a release tried to publish it.
+#
+# The three suites that assert against the Zavu backend skip themselves here,
+# since that backend is private and deliberately not vendored. What remains
+# still covers the request wiring, the response handling and the whole node
+# description. See nodes/Zavu/backend-fixture.ts.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.14.0'
+
+      - run: npm install --no-audit --no-fund
+
+      - run: npm run lint
+
+      - run: npm test
+
+      - run: npm run build
+
+      - name: The built package must contain the nodes
+        run: |
+          test -f dist/nodes/Zavu/Zavu.node.js
+          test -f dist/nodes/ZavuTrigger/ZavuTrigger.node.js
+          test -f dist/credentials/ZavuApi.credentials.js

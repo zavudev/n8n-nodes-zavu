@@ -1,0 +1,371 @@
+[
+  {
+    "id": "wfSend",
+    "name": "E2E send",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "trg",
+        "name": "Manual",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "resource": "message",
+          "operation": "send",
+          "to": "+56912345678",
+          "channel": "whatsapp",
+          "messageType": "text",
+          "text": "hello from the e2e run",
+          "options": {
+            "senderId": "snd_e2e_primary",
+            "idempotencyKey": "e2e-run-1",
+            "metadata": {
+              "metadata": [
+                {
+                  "name": "source",
+                  "value": "n8n-e2e"
+                }
+              ]
+            }
+          }
+        },
+        "id": "zv",
+        "name": "Zavu",
+        "type": "n8n-nodes-zavu.zavu",
+        "typeVersion": 1,
+        "position": [
+          240,
+          0
+        ],
+        "credentials": {
+          "zavuApi": {
+            "id": "zavuE2eCred",
+            "name": "Zavu E2E"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Manual": {
+        "main": [
+          [
+            {
+              "node": "Zavu",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    }
+  },
+  {
+    "id": "wfList",
+    "name": "E2E list all",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "trg",
+        "name": "Manual",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "resource": "message",
+          "operation": "getMany",
+          "returnAll": true,
+          "filters": {}
+        },
+        "id": "zv",
+        "name": "Zavu",
+        "type": "n8n-nodes-zavu.zavu",
+        "typeVersion": 1,
+        "position": [
+          240,
+          0
+        ],
+        "credentials": {
+          "zavuApi": {
+            "id": "zavuE2eCred",
+            "name": "Zavu E2E"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Manual": {
+        "main": [
+          [
+            {
+              "node": "Zavu",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    }
+  },
+  {
+    "id": "wfEmail",
+    "name": "E2E validate emails",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "trg",
+        "name": "Manual",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "resource": "utility",
+          "operation": "validateEmail",
+          "emails": "maria@example.com, info@example.com"
+        },
+        "id": "zv",
+        "name": "Zavu",
+        "type": "n8n-nodes-zavu.zavu",
+        "typeVersion": 1,
+        "position": [
+          240,
+          0
+        ],
+        "credentials": {
+          "zavuApi": {
+            "id": "zavuE2eCred",
+            "name": "Zavu E2E"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Manual": {
+        "main": [
+          [
+            {
+              "node": "Zavu",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    }
+  },
+  {
+    "id": "wfTemplate",
+    "name": "E2E template send",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "trg",
+        "name": "Manual",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "resource": "message",
+          "operation": "send",
+          "to": "+56912345678",
+          "channel": "whatsapp",
+          "messageType": "template",
+          "templateId": "tmpl_e2e",
+          "templateVariables": {
+            "variable": [
+              {
+                "name": "1",
+                "value": "Jane"
+              },
+              {
+                "name": "2",
+                "value": "ORD-9"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "zv",
+        "name": "Zavu",
+        "type": "n8n-nodes-zavu.zavu",
+        "typeVersion": 1,
+        "position": [
+          240,
+          0
+        ],
+        "credentials": {
+          "zavuApi": {
+            "id": "zavuE2eCred",
+            "name": "Zavu E2E"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Manual": {
+        "main": [
+          [
+            {
+              "node": "Zavu",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    }
+  },
+  {
+    "id": "wfError",
+    "name": "E2E api error",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "trg",
+        "name": "Manual",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "resource": "message",
+          "operation": "send",
+          "to": "+10000000000",
+          "channel": "whatsapp",
+          "messageType": "text",
+          "text": "should fail",
+          "options": {}
+        },
+        "id": "zv",
+        "name": "Zavu",
+        "type": "n8n-nodes-zavu.zavu",
+        "typeVersion": 1,
+        "position": [
+          240,
+          0
+        ],
+        "credentials": {
+          "zavuApi": {
+            "id": "zavuE2eCred",
+            "name": "Zavu E2E"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Manual": {
+        "main": [
+          [
+            {
+              "node": "Zavu",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    }
+  },
+  {
+    "id": "wfTrigger",
+    "name": "E2E trigger",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {
+          "senderId": "snd_e2e_primary",
+          "events": [
+            "message.inbound"
+          ],
+          "options": {}
+        },
+        "id": "zvt",
+        "name": "Zavu Trigger",
+        "type": "n8n-nodes-zavu.zavuTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "webhookId": "e2e-webhook-id",
+        "credentials": {
+          "zavuApi": {
+            "id": "zavuE2eCred",
+            "name": "Zavu E2E"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "id": "noop",
+        "name": "NoOp",
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          240,
+          0
+        ]
+      }
+    ],
+    "connections": {
+      "Zavu Trigger": {
+        "main": [
+          [
+            {
+              "node": "NoOp",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    }
+  }
+]

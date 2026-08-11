@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": false,
+    // Not incremental, on purpose. The build starts by deleting dist/, and an
+    // incremental tsc that shares its buildinfo with a preceding `--noEmit`
+    // typecheck concludes everything is up to date and emits nothing — leaving
+    // an empty dist/ that packs into a tarball n8n cannot load. Publishing that
+    // is a silent failure; a two second full build is not a cost worth having it.
+    "incremental": false
+  },
+  "include": ["credentials/**/*.ts", "nodes/**/*.ts"],
+  "exclude": [
+    "**/*.test.ts",
+    "nodes/Zavu/backend-fixture.ts",
+    "dist/**/*",
+    "node_modules/**/*"
+  ]
+}

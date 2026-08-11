@@ -1,0 +1,89 @@
+name: Publish to npm
+
+# This workflow runs in the PUBLIC repo zavudev/n8n-nodes-zavu, not in the Zavu
+# monorepo. It is mirrored there by .github/workflows/n8n-node-publish.yml.
+#
+# It exists because of one n8n rule: since 2026-05-01, community nodes submitted
+# for verification must be published by GitHub Actions with an npm provenance
+# statement. n8n does not accept packages published from a laptop, and an
+# unverified node cannot be installed on n8n Cloud.
+#
+# Authentication is npm's trusted publishing (OIDC), so there is no npm token in
+# this repository at all:
+#   • `id-token: write` lets GitHub mint the OIDC token npm verifies.
+#   • Provenance is generated automatically for a public repo — the `--provenance`
+#     flag is deliberately absent because trusted publishing already implies it.
+#   • npm CLI >= 11.5.1 and Node >= 22.14.0 are required, which is why npm is
+#     upgraded explicitly rather than trusted to the runner's bundled version.
+#
+# One-time setup on npmjs.com, before the first run:
+#   Package settings -> Publish access -> Trusted Publishers -> Add a publisher
+#   Provider: GitHub Actions
+#   Owner: zavudev   Repository: n8n-nodes-zavu   Workflow: publish.yml
+#
+# Releasing: bump "version" in package.json, merge, then publish a GitHub
+# release. Publishing the same version twice fails, which is the intended guard.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required for trusted publishing and provenance
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.14.0'
+          registry-url: 'https://registry.npmjs.org'
+
+      # The runner's bundled npm predates trusted publishing on some images.
+      - name: Use an npm that supports trusted publishing
+        run: |
+          npm install -g npm@latest
+          npm --version
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      # The same gates as the monorepo. A package that fails them should not
+      # reach npm, and prepublishOnly alone would only catch two of the three.
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        # The suites that check against the Zavu backend skip themselves here;
+        # the backend is private and not vendored. See nodes/Zavu/backend-fixture.ts.
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Refuse to publish an empty package
+        # An incremental tsc has emitted nothing after a clean before, producing
+        # a tarball that installs and then fails to load. Cheap to check, and the
+        # failure it prevents is invisible until a user installs it.
+        run: |
+          test -f dist/nodes/Zavu/Zavu.node.js
+          test -f dist/nodes/ZavuTrigger/ZavuTrigger.node.js
+          test -f dist/credentials/ZavuApi.credentials.js
+          test -f dist/nodes/Zavu/zavu.svg
+
+      - name: Publish
+        run: npm publish --access public
+
+      - name: Summary
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          echo "::notice::Published n8n-nodes-zavu@${VERSION} with provenance."

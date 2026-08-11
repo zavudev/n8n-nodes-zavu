@@ -1,0 +1,66 @@
+{
+  "name": "n8n-nodes-zavu",
+  "version": "0.1.0",
+  "description": "n8n community node for Zavu — one API for SMS, WhatsApp, Telegram, Email, Instagram, Messenger and Voice.",
+  "keywords": [
+    "n8n-community-node-package",
+    "zavu",
+    "sms",
+    "whatsapp",
+    "telegram",
+    "messaging",
+    "email",
+    "voice"
+  ],
+  "license": "MIT",
+  "homepage": "https://zavu.dev",
+  "author": {
+    "name": "Zavu",
+    "email": "support@zavu.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zavudev/n8n-nodes-zavu.git"
+  },
+  "engines": {
+    "node": ">=20.15"
+  },
+  "scripts": {
+    "build": "npx rimraf dist && tsc -p tsconfig.build.json && gulp build:icons",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "test": "vitest run",
+    "test:e2e": "bash e2e/run.sh",
+    "prepublishOnly": "npm run build && npm run lint"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/ZavuApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Zavu/Zavu.node.js",
+      "dist/nodes/ZavuTrigger/ZavuTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "gulp": "^5.0.0",
+    "n8n-workflow": "^1.82.0",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
