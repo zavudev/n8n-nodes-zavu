@@ -95,7 +95,9 @@ the shape a spreadsheet or database node produces. Recipients are sent in batche
 of 1000 (the endpoint's limit), so a 5000-row sheet works in one node.
 
 Sending a broadcast requires both identity (KYC) and business (KYB) verification
-on the team, and passes through content review. Drafts need neither.
+on the team, except on WhatsApp — Meta's approval of the template covers both
+there, and what is enforced instead is that the template is approved. It also
+passes through content review. Drafts need nothing.
 
 ## Zavu Trigger
 
