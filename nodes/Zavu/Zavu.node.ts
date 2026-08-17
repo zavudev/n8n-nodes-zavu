@@ -535,6 +535,12 @@ async function executeTemplate(
 		return [unwrapEnvelope(await zavuApiRequest.call(this, 'POST', '/v1/templates', body))];
 	}
 
+	if (operation === 'sync') {
+		const senderId = this.getNodeParameter('syncSenderId', i, '') as string;
+		const body: IDataObject = senderId ? { senderId } : {};
+		return [(await zavuApiRequest.call(this, 'POST', '/v1/templates/sync', body)) as IDataObject];
+	}
+
 	const templateId = this.getNodeParameter('templateId', i) as string;
 
 	if (operation === 'get') {

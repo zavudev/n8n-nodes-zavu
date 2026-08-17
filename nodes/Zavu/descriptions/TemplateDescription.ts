@@ -35,6 +35,13 @@ export const templateOperations: INodeProperties[] = [
 					'Send a draft to Meta for review. The sender must have a WhatsApp Business Account connected.',
 				action: 'Submit a template for approval',
 			},
+			{
+				name: 'Sync From WhatsApp',
+				value: 'sync',
+				description:
+					'Import templates created outside Zavu and refresh the approval status of the ones it already knows',
+				action: 'Sync templates from WhatsApp',
+			},
 		],
 		default: 'getMany',
 	},
@@ -68,6 +75,16 @@ export const templateFields: INodeProperties[] = [
 		options: CATEGORIES,
 		description: 'Overrides the category stored on the template',
 		displayOptions: showFor(['submit']),
+	},
+	{
+		displayName: 'Sender Name or ID',
+		name: 'syncSenderId',
+		type: 'options',
+		typeOptions: { loadOptionsMethod: 'getSenders' },
+		default: '',
+		description:
+			'Sync only this sender\'s WhatsApp Business Account. Leave empty to sync every WhatsApp sender in the project. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+		displayOptions: showFor(['sync']),
 	},
 
 	// -------------------------------------------------------------- create ---
