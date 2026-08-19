@@ -72,7 +72,7 @@ export const conversationFields: INodeProperties[] = [
 			},
 			{
 				displayName: 'Search',
-				name: 'q',
+				name: 'search',
 				type: 'string',
 				default: '',
 				placeholder: '+56912345678',
