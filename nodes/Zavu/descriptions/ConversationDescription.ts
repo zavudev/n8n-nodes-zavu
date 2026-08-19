@@ -71,6 +71,15 @@ export const conversationFields: INodeProperties[] = [
 				options: CHANNEL_OPTIONS.filter((option) => option.value !== 'auto'),
 			},
 			{
+				displayName: 'Search',
+				name: 'q',
+				type: 'string',
+				default: '',
+				placeholder: '+56912345678',
+				description:
+					'Find a thread by who it is with: phone number (any format), email address, WhatsApp group subject, username, or BSUID. Does not search message bodies. Results come back ranked by relevance instead of most-recent-first.',
+			},
+			{
 				...senderIdField,
 				description:
 					'Keep only threads last handled by this sender. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
