@@ -59,7 +59,7 @@ export const broadcastOperations: INodeProperties[] = [
 export const broadcastFields: INodeProperties[] = [
 	{
 		displayName:
-			'Sending a broadcast needs both identity (KYC) and business (KYB) verification on the team, except on WhatsApp, where Meta\'s template approval covers both. It also passes through content review: a WhatsApp broadcast built on a Meta-approved template skips review; other channels wait for it. Drafts need nothing.',
+			'Sending a broadcast needs the account past the sandbox level: identity verification, a saved payment method, a settled deposit, or a paid plan, any one of them. Business verification is not required. WhatsApp is exempt, because Meta\'s template approval is the review. It also passes through content review: a WhatsApp broadcast built on a Meta-approved template skips it; other channels wait for it. Drafts need nothing.',
 		name: 'broadcastVerificationNotice',
 		type: 'notice',
 		default: '',

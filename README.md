@@ -94,10 +94,12 @@ whole prompt in **Text**; they take no other content.
 the shape a spreadsheet or database node produces. Recipients are sent in batches
 of 1000 (the endpoint's limit), so a 5000-row sheet works in one node.
 
-Sending a broadcast requires both identity (KYC) and business (KYB) verification
-on the team, except on WhatsApp — Meta's approval of the template covers both
-there, and what is enforced instead is that the template is approved. It also
-passes through content review. Drafts need nothing.
+Sending a broadcast needs the account past the sandbox level: identity
+verification, a saved payment method, a settled deposit, or a paid plan, any one
+of them. Business verification is not required. WhatsApp is exempt: Meta's
+approval of the template is the review, and what is enforced there is that the
+template is approved. Every other channel also passes through content review.
+Drafts need nothing.
 
 ## Zavu Trigger
 
