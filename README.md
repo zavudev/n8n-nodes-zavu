@@ -94,7 +94,7 @@ whole prompt in **Text**; they take no other content.
 the shape a spreadsheet or database node produces. Recipients are sent in batches
 of 1000 (the endpoint's limit), so a 5000-row sheet works in one node.
 
-Sending a broadcast needs the account past the sandbox level: identity
+Sending a broadcast needs the account past the unverified level: identity
 verification, a saved payment method, a settled deposit, or a paid plan, any one
 of them. Business verification is not required. WhatsApp is exempt: Meta's
 approval of the template is the review, and what is enforced there is that the
