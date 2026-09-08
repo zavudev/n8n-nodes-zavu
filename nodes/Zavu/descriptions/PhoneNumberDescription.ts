@@ -107,6 +107,7 @@ export const phoneNumberFields: INodeProperties[] = [
 				default: 'local',
 				options: [
 					{ name: 'Local', value: 'local' },
+					{ name: 'Mobile', value: 'mobile' },
 					{ name: 'National', value: 'national' },
 					{ name: 'Toll Free', value: 'tollFree' },
 				],
