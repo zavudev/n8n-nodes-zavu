@@ -133,6 +133,56 @@ export const phoneNumberFields: INodeProperties[] = [
 		description: 'Optional label for the number',
 		displayOptions: showFor(['purchase']),
 	},
+	{
+		displayName: 'Number Type',
+		name: 'purchaseType',
+		type: 'options',
+		default: '',
+		description:
+			'The type the number was found under in Search Available. Required when Regulatory Requirements are set.',
+		displayOptions: showFor(['purchase']),
+		options: [
+			{ name: 'Local', value: 'local' },
+			{ name: 'Mobile', value: 'mobile' },
+			{ name: 'National', value: 'national' },
+			{ name: 'Not Set', value: '' },
+			{ name: 'Toll Free', value: 'tollFree' },
+		],
+	},
+	{
+		displayName: 'Regulatory Requirements',
+		name: 'regulatoryRequirements',
+		type: 'fixedCollection',
+		typeOptions: { multipleValues: true },
+		default: {},
+		placeholder: 'Add Requirement',
+		description:
+			'For numbers that need regulatory information. Get the requirement IDs from GET /v1/phone-numbers/requirements for the number.',
+		displayOptions: showFor(['purchase']),
+		options: [
+			{
+				name: 'requirement',
+				displayName: 'Requirement',
+				values: [
+					{
+						displayName: 'Requirement ID',
+						name: 'requirementType',
+						type: 'string',
+						default: '',
+						description: 'A requirementTypes[].ID from the requirements lookup',
+					},
+					{
+						displayName: 'Value',
+						name: 'fieldValue',
+						type: 'string',
+						default: '',
+						description:
+							'The text itself, or the ID of an address or document created in this project',
+					},
+				],
+			},
+		],
+	},
 
 	{
 		displayName: 'Phone Number Name or ID',

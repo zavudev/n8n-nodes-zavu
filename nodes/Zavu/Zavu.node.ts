@@ -932,6 +932,19 @@ async function executePhoneNumber(
 		const body: IDataObject = { phoneNumber: this.getNodeParameter('phoneNumber', i) as string };
 		const name = this.getNodeParameter('name', i, '') as string;
 		if (name) body.name = name;
+		const purchaseType = this.getNodeParameter('purchaseType', i, '') as string;
+		if (purchaseType) body.type = purchaseType;
+		const requirements = (
+			this.getNodeParameter('regulatoryRequirements', i, {}) as {
+				requirement?: Array<{ requirementType: string; fieldValue: string }>;
+			}
+		).requirement;
+		if (requirements?.length) {
+			body.regulatoryRequirements = requirements.map((entry) => ({
+				requirementType: entry.requirementType,
+				fieldValue: entry.fieldValue,
+			}));
+		}
 		return [unwrapEnvelope(await zavuApiRequest.call(this, 'POST', '/v1/phone-numbers', body))];
 	}
 
