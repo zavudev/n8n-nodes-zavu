@@ -323,6 +323,7 @@ export const broadcastFields: INodeProperties[] = [
 					{ name: 'Escalated', value: 'escalated' },
 					{ name: 'Failed', value: 'failed' },
 					{ name: 'Paused', value: 'paused' },
+					{ name: 'Pending Admin Review', value: 'pending_admin_review' },
 					{ name: 'Pending Review', value: 'pending_review' },
 					{ name: 'Rejected', value: 'rejected' },
 					{ name: 'Rejected Final', value: 'rejected_final' },

@@ -34,7 +34,7 @@ export const callOperations: INodeProperties[] = [
 			{
 				name: 'Hang Up',
 				value: 'hangup',
-				description: 'End a call that is still ringing or in progress',
+				description: 'End a call that is still queued, ringing or in progress. A call that already ended answers 409.',
 				action: 'Hang up a voice call',
 			},
 		],
@@ -45,7 +45,7 @@ export const callOperations: INodeProperties[] = [
 export const callFields: INodeProperties[] = [
 	{
 		displayName:
-			'Voice Agents must be enabled for the team, and the sender agent needs voice turned on. Calls are billed per connected minute plus telephony, and are not available with test-mode API keys.',
+			'The sender agent needs voice turned on. Calls are billed per connected minute plus telephony, and are not available with test-mode API keys.',
 		name: 'callNotice',
 		type: 'notice',
 		default: '',

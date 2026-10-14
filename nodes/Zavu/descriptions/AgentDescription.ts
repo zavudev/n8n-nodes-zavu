@@ -132,6 +132,22 @@ export const agentFields: INodeProperties[] = [
 		displayOptions: showFor(['create']),
 	},
 	{
+		displayName: 'Provider API Key',
+		name: 'apiKey',
+		type: 'string',
+		typeOptions: { password: true },
+		required: true,
+		default: '',
+		description: 'Your key for the LLM provider. Stored encrypted and never returned.',
+		displayOptions: {
+			show: {
+				resource: ['agent'],
+				operation: ['create'],
+				provider: ['openai', 'anthropic', 'google', 'mistral'],
+			},
+		},
+	},
+	{
 		displayName: 'Model',
 		name: 'model',
 		type: 'string',

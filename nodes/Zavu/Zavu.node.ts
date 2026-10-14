@@ -794,6 +794,9 @@ async function executeAgent(
 			systemPrompt: this.getNodeParameter('systemPrompt', i) as string,
 			...additionalFields,
 		};
+		if (body.provider !== 'zavu') {
+			body.apiKey = this.getNodeParameter('apiKey', i) as string;
+		}
 
 		if (typeof body.triggerOnChannels === 'string') {
 			body.triggerOnChannels = (body.triggerOnChannels as string)
