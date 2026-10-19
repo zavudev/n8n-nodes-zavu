@@ -244,7 +244,7 @@ export const broadcastFields: INodeProperties[] = [
 						type: 'string',
 						default: '',
 						placeholder: '+14155551234',
-						description: 'Phone number in E.164 format or an email address',
+						description: 'Phone number in E.164 format, an email address, or, on a Telegram broadcast, the numeric chat ID of someone who has already written to your bot',
 					},
 					{
 						displayName: 'Template Variables',

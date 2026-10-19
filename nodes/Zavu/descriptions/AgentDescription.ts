@@ -43,7 +43,7 @@ export const agentOperations: INodeProperties[] = [
 				name: 'Test',
 				value: 'test',
 				description:
-					'Run the agent against a message and return what it would say. Delivers nothing and charges nothing.',
+					'Run the agent against a message and return what it would say. Delivers nothing; billed like a live reply on Zavu models.',
 				action: 'Test an agent',
 			},
 			{ name: 'Update', value: 'update', action: 'Update an agent' },
@@ -97,7 +97,7 @@ export const agentFields: INodeProperties[] = [
 	},
 	{
 		displayName:
-			'A test run never executes the agent tools — running them would cause real side effects. Live conversations do. Check the "warnings" field on the result before reading a passing test as proof the agent works.',
+			'A test run offers the agent tools but never runs them — running them would cause real side effects. If the agent picks one, "plannedToolCalls" says which and the reply stops there. On Zavu models a test run is billed like a live reply ("cost"). Check the "warnings" field before reading a passing test as proof the agent works.',
 		name: 'agentTestNotice',
 		type: 'notice',
 		default: '',
