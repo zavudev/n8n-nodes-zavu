@@ -486,7 +486,7 @@ export const messageFields: INodeProperties[] = [
 				name: 'fallbackEnabled',
 				type: 'boolean',
 				default: true,
-				description: 'Whether to fall back to SMS automatically when WhatsApp fails',
+				description: 'Whether to fall back to SMS when WhatsApp fails (text and templates only). If not added: on when Channel is Auto, off when a channel is chosen.',
 			},
 			{
 				displayName: 'Idempotency Key',
