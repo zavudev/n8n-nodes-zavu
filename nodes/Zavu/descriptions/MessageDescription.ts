@@ -405,7 +405,7 @@ export const messageFields: INodeProperties[] = [
 		default: {},
 		placeholder: 'Add Variable',
 		description:
-			'Key them to match the template body: by position (1, 2, …) for positional templates, or by name (customer_name) for named ones. Do not mix the two in one message.',
+			'Key them to match the template body: by position (1, 2, …) for positional templates, or by name (customer_name) for named ones. Do not mix the two in one message. On WhatsApp a value may not contain line breaks, tabs or more than 4 consecutive spaces.',
 		displayOptions: {
 			show: { resource: ['message'], operation: ['send'], messageType: ['template'] },
 		},
