@@ -16,6 +16,7 @@ export const WEBHOOK_EVENT_OPTIONS = [
 	{ name: 'Call: Completed', value: 'call.completed' },
 	{ name: 'Call: Failed', value: 'call.failed' },
 	{ name: 'Call: Started', value: 'call.initiated' },
+	{ name: 'Contact: Identity Linked', value: 'contact.identity_linked' },
 	{ name: 'Conversation: New', value: 'conversation.new' },
 	{ name: 'Domain: Verification Failed', value: 'domain.failed' },
 	{ name: 'Domain: Verified', value: 'domain.verified' },
