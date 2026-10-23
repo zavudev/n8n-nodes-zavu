@@ -232,6 +232,33 @@ describe('shape details that would otherwise be silent', () => {
 		expect(body.metadata).toEqual({ orderId: 'ORD-1' });
 	});
 
+	it('quotes a message on a text send, as content.replyToMessageId', () => {
+		const body = build({ channel: 'whatsapp', text: 'hi', options: { replyToMessageId: 'msg_123' } });
+		expectAcceptedIfBackend(body);
+		expect(body.content).toEqual({ replyToMessageId: 'msg_123' });
+	});
+
+	it('keeps the quote next to the media content', () => {
+		const body = build({
+			channel: 'whatsapp',
+			messageType: 'image',
+			mediaUrl: 'https://example.com/a.jpg',
+			options: { replyToMessageId: 'msg_123' },
+		});
+		expectAcceptedIfBackend(body);
+		expect(body.content).toEqual({ mediaUrl: 'https://example.com/a.jpg', replyToMessageId: 'msg_123' });
+	});
+
+	it('trims the quoted id an expression leaves with a trailing newline', () => {
+		const body = build({ channel: 'whatsapp', text: 'hi', options: { replyToMessageId: ' msg_123\n' } });
+		expect(body.content).toEqual({ replyToMessageId: 'msg_123' });
+	});
+
+	it('sends no quote for an id that is only whitespace', () => {
+		const body = build({ channel: 'whatsapp', text: 'hi', options: { replyToMessageId: '  ' } });
+		expect(body.content).toBeUndefined();
+	});
+
 	it('passes the idempotency key through, so a retry does not double-send', () => {
 		const body = build({ text: 'hi', options: { idempotencyKey: 'n8n-run-42' } });
 		expectAcceptedIfBackend(body);

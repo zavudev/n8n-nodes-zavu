@@ -505,6 +505,15 @@ export const messageFields: INodeProperties[] = [
 			},
 			metadataField,
 			{
+				displayName: 'Quote Message ID',
+				name: 'replyToMessageId',
+				type: 'string',
+				default: '',
+				placeholder: 'jd7x2k3m4n5p6q7r8s9t0',
+				description:
+					'Zavu ID of the message to quote, such as the messageId of an inbound event. WhatsApp and Telegram only; any other channel is refused with a 400.',
+			},
+			{
 				displayName: 'Reply-To',
 				name: 'replyTo',
 				type: 'string',

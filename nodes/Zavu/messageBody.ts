@@ -139,8 +139,14 @@ export function buildSendMessageBody(params: SendMessageParams): IDataObject {
 
 	if (params.text) body.text = params.text;
 
+	// A quote rides on any message type, so it is added after the type's own content.
 	const content = buildMessageContent(params);
-	if (content && Object.keys(content).length > 0) body.content = content;
+	// Trimmed: an expression like `{{ $json.data.messageId }}` often carries a
+	// trailing newline, which would turn into a 404 for a message that exists.
+	const replyToMessageId = String(options.replyToMessageId ?? '').trim();
+	const quoted = replyToMessageId ? { replyToMessageId } : {};
+	const merged = { ...(content ?? {}), ...quoted };
+	if (Object.keys(merged).length > 0) body.content = merged;
 
 	if (channel === 'email') {
 		if (params.subject) body.subject = params.subject;
