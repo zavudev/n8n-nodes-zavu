@@ -561,6 +561,23 @@ export const messageFields: INodeProperties[] = [
 				],
 			},
 			{
+				displayName: 'Template Header Media URL',
+				name: 'templateHeaderMediaUrl',
+				type: 'string',
+				default: '',
+				placeholder: 'https://files.example.com/invoice.pdf',
+				description:
+					"HTTPS URL of the media for this send, for a template whose header is image, video or document. Replaces the template's stored file. WhatsApp fetches it, so it must be publicly reachable when the message is sent.",
+			},
+			{
+				displayName: 'Template Header Filename',
+				name: 'templateHeaderFilename',
+				type: 'string',
+				default: '',
+				placeholder: 'invoice-1042.pdf',
+				description: 'File name the recipient sees. Only valid when the template header is a document.',
+			},
+			{
 				displayName: 'Voice Language',
 				name: 'voiceLanguage',
 				type: 'string',

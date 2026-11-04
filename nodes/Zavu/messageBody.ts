@@ -45,6 +45,8 @@ export interface SendMessageParams {
 	templateVariables?: Record<string, string>;
 	templateButtonVariables?: Record<string, string>;
 	templateHeaderVariables?: Record<string, string>;
+	templateHeaderMediaUrl?: string;
+	templateHeaderFilename?: string;
 	options?: IDataObject;
 }
 
@@ -122,6 +124,8 @@ export function buildMessageContent(params: SendMessageParams): IDataObject | un
 		if (params.templateHeaderVariables) {
 			content.templateHeaderVariables = params.templateHeaderVariables;
 		}
+		if (params.templateHeaderMediaUrl) content.templateHeaderMediaUrl = params.templateHeaderMediaUrl;
+		if (params.templateHeaderFilename) content.templateHeaderFilename = params.templateHeaderFilename;
 		return content;
 	}
 

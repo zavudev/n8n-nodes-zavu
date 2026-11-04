@@ -352,6 +352,8 @@ function collectSendParams(
 		params.templateHeaderVariables = keyValueToRecord(
 			options.templateHeaderVariables as IDataObject,
 		);
+		params.templateHeaderMediaUrl = (options.templateHeaderMediaUrl as string) || undefined;
+		params.templateHeaderFilename = (options.templateHeaderFilename as string) || undefined;
 	}
 
 	// A body-only type sends its prompt as `text` and nothing else. Reading any
