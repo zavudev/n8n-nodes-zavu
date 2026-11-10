@@ -4,7 +4,7 @@
 	"codexVersion": "1.0",
 	"categories": ["Communication", "Marketing"],
 	"resources": {
-		"credentialDocumentation": [{ "url": "https://docs.zavu.dev/quickstart" }],
-		"primaryDocumentation": [{ "url": "https://docs.zavu.dev/api-reference" }]
+		"credentialDocumentation": [{ "url": "https://www.zavu.dev/docs/quickstart" }],
+		"primaryDocumentation": [{ "url": "https://www.zavu.dev/docs/api-reference" }]
 	}
 }

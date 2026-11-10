@@ -187,8 +187,8 @@ register automatically.
 
 ## Links
 
-- [Zavu documentation](https://docs.zavu.dev)
-- [API reference](https://docs.zavu.dev/api-reference)
+- [Zavu documentation](https://www.zavu.dev/docs)
+- [API reference](https://www.zavu.dev/docs/api-reference)
 - [n8n community nodes](https://docs.n8n.io/integrations/community-nodes/)
 
 ## License

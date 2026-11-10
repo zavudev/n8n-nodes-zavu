@@ -26,7 +26,7 @@ export const customOperations: INodeProperties[] = [
 export const customFields: INodeProperties[] = [
 	{
 		displayName:
-			'The endpoints this node models cover the common cases. This operation reaches everything else in the API — sub-accounts, 10DLC, functions, knowledge bases, invitations — with the same credential and error handling. See <a href="https://docs.zavu.dev/api-reference">the API reference</a>.',
+			'The endpoints this node models cover the common cases. This operation reaches everything else in the API — sub-accounts, 10DLC, functions, knowledge bases, invitations — with the same credential and error handling. See <a href="https://www.zavu.dev/docs/api-reference">the API reference</a>.',
 		name: 'customNotice',
 		type: 'notice',
 		default: '',

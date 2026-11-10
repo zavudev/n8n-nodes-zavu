@@ -10,7 +10,7 @@ export class ZavuApi implements ICredentialType {
 
 	displayName = 'Zavu API';
 
-	documentationUrl = 'https://docs.zavu.dev';
+	documentationUrl = 'https://www.zavu.dev/docs';
 
 	properties: INodeProperties[] = [
 		{
